@@ -187,7 +187,7 @@ def generate_feature_vector(text, freq):
     # Make sure type is int or float
     feature.append(freq_cheap_feature(text, freq))
     feature.append(freq_medication_feature(text, freq))
-    feature.append(freq_discount_feature(text, freq))
+    # feature.append(freq_discount_feature(text, freq))
     return feature
 
 # This method generates a design matrix with a list of filenames
