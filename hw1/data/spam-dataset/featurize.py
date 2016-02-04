@@ -139,6 +139,14 @@ def freq_and_feature(text, freq):
 def example_feature(text, freq):
     return int('example' in text)
 
+def freq_cheap_feature(text, freq):
+    return float(freq['cheap'])
+
+def freq_medication_feature(text, freq):
+    return float(freq['medication'])
+def freq_discount_feature(text, freq):
+    return float(freq['discount'])
+
 # Generates a feature vector
 def generate_feature_vector(text, freq):
     feature = []
@@ -177,7 +185,9 @@ def generate_feature_vector(text, freq):
 
     # --------- Add your own features here ---------
     # Make sure type is int or float
-
+    feature.append(freq_cheap_feature(text, freq))
+    feature.append(freq_medication_feature(text, freq))
+    feature.append(freq_discount_feature(text, freq))
     return feature
 
 # This method generates a design matrix with a list of filenames
