@@ -1,0 +1,711 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{HW1Digits}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{\PYZpc{}}\PY{k}{pylab} inline
+        \PY{k+kn}{import} \PY{n+nn}{scipy.io}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{svm}
+        \PY{n}{DEBUG}\PY{o}{=}\PY{n+nb+bp}{True}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Populating the interactive namespace from numpy and matplotlib
+    \end{Verbatim}
+
+    \section{\textbf{Problem 1.}}\label{problem-1.}
+
+    \subparagraph{Train a linear SVM using raw pixels as features. Plot the
+error rate on a validation set versus the number of training ex- amples
+that you used to train your classifier. Make sure you set aside 10,000
+training images as a validation set. The number of training ex- amples
+in your experiment should be 100, 200, 500, 1,000, 2,000, 5,000, and
+10,000. At this stage, you should expect accuracies between 70\% and
+90\%.}\label{train-a-linear-svm-using-raw-pixels-as-features.-plot-the-error-rate-on-a-validation-set-versus-the-number-of-training-ex--amples-that-you-used-to-train-your-classifier.-make-sure-you-set-aside-10000-training-images-as-a-validation-set.-the-number-of-training-ex--amples-in-your-experiment-should-be-100-200-500-1000-2000-5000-and-10000.-at-this-stage-you-should-expect-accuracies-between-70-and-90.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{digit\PYZus{}data\PYZus{}test} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{io}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{data/digit\PYZhy{}dataset/test.mat}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{digit\PYZus{}data\PYZus{}train} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{io}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{data/digit\PYZhy{}dataset/train.mat}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{test\PYZus{}img}\PY{o}{=} \PY{n}{digit\PYZus{}data\PYZus{}test}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{test\PYZus{}images}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{train\PYZus{}img}\PY{o}{=} \PY{n}{digit\PYZus{}data\PYZus{}train}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{train\PYZus{}images}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{train\PYZus{}label}\PY{o}{=} \PY{n}{digit\PYZus{}data\PYZus{}train}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{train\PYZus{}labels}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c}{\PYZsh{}Flatten the 28x28 images into 784 pixel long vectors }
+        \PY{n}{train\PYZus{}img\PYZus{}flat}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{shape}\PY{p}{(}\PY{n}{train\PYZus{}img}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+            \PY{n}{train\PYZus{}img\PYZus{}flat}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}img}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n}{train\PYZus{}img\PYZus{}flat1}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}img\PYZus{}flat}\PY{p}{)}
+\end{Verbatim}
+
+    To debug and verify that the data partitioning is preserves a fairly
+uniform number of sample for each digit, I plot the histogram of the
+labels to visually verify that the histogram is approximately flat
+(i.e.~uniform).
+
+    Setting aside 10,000 images for validation
+
+    Since this data is sorted , we need to pick randomly from the sample
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}114}]:} \PY{c}{\PYZsh{}get a list of 10100 unique random numbers for indexing }
+          \PY{n}{N}\PY{o}{=}\PY{l+m+mi}{1000}
+          \PY{n}{num\PYZus{}verification} \PY{o}{=} \PY{l+m+mi}{10000}
+          \PY{n}{s} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+          \PY{k}{while} \PY{n+nb}{len}\PY{p}{(}\PY{n}{s}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{N}\PY{o}{+}\PY{n}{num\PYZus{}verification}\PY{p}{:}
+              \PY{n}{s}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{60000}\PY{p}{)}\PY{p}{)}
+          \PY{n}{rand\PYZus{}idx}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{)}
+          \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{shuffle}\PY{p}{(}\PY{n}{rand\PYZus{}idx}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}115}]:} \PY{n}{train\PYZus{}subset} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{labels\PYZus{}subset} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{rand\PYZus{}idx}\PY{p}{[}\PY{p}{:}\PY{n}{N}\PY{p}{]}\PY{p}{:}
+              \PY{n}{train\PYZus{}subset}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}img\PYZus{}flat}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+              \PY{n}{labels\PYZus{}subset}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}label}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+          \PY{n}{train\PYZus{}subset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}subset}\PY{p}{)}
+          \PY{n}{labels\PYZus{}subset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{labels\PYZus{}subset}\PY{p}{)}
+          \PY{k}{if} \PY{p}{(}\PY{n}{DEBUG}\PY{p}{)} \PY{p}{:} \PY{k}{print} \PY{n}{shape}\PY{p}{(}\PY{n}{train\PYZus{}subset}\PY{p}{)}
+          \PY{k}{if} \PY{p}{(}\PY{n}{DEBUG}\PY{p}{)} \PY{p}{:}\PY{k}{print} \PY{n}{shape}\PY{p}{(}\PY{n}{labels\PYZus{}subset}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(1000, 784)
+(1000,)
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}126}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{montage\PYZus{}images}\PY{p}{(}\PY{n}{train\PYZus{}subset}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{28}\PY{p}{,}\PY{l+m+mi}{28}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{l+m+mi}{50}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}126}]:} <matplotlib.image.AxesImage at 0x7f78e1e13490>
+\end{Verbatim}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_10_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}110}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{montage\PYZus{}images}\PY{p}{(}\PY{n}{train\PYZus{}img}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}110}]:} <matplotlib.image.AxesImage at 0x7f78e21c2610>
+\end{Verbatim}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_11_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}130}]:} \PY{c}{\PYZsh{}Creating 10000 verification subset }
+          \PY{n}{verify\PYZus{}train\PYZus{}subset} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{verify\PYZus{}labels\PYZus{}subset} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{rand\PYZus{}idx}\PY{p}{[}\PY{n}{N}\PY{p}{:}\PY{n}{num\PYZus{}verification}\PY{o}{+}\PY{n}{N}\PY{p}{]}\PY{p}{:}
+              \PY{n}{verify\PYZus{}train\PYZus{}subset}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}img\PYZus{}flat}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+              \PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}label}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+          \PY{n}{verify\PYZus{}train\PYZus{}subset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{verify\PYZus{}train\PYZus{}subset}\PY{p}{)}
+          \PY{n}{verify\PYZus{}labels\PYZus{}subset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{p}{)}
+          \PY{k}{if} \PY{p}{(}\PY{n}{DEBUG}\PY{p}{)} \PY{p}{:} \PY{k}{print} \PY{n}{shape}\PY{p}{(}\PY{n}{verify\PYZus{}train\PYZus{}subset}\PY{p}{)}
+          \PY{k}{if} \PY{p}{(}\PY{n}{DEBUG}\PY{p}{)} \PY{p}{:}\PY{k}{print} \PY{n}{shape}\PY{p}{(}\PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(10000, 784)
+(10000,)
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{clf} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{LinearSVC}\PY{p}{(}\PY{p}{)}
+         \PY{n}{clf}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}subset}\PY{p}{,}\PY{n}{labels\PYZus{}subset}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}57}]:} LinearSVC(C=1.0, class\_weight=None, dual=True, fit\_intercept=True,
+              intercept\_scaling=1, loss='squared\_hinge', max\_iter=1000,
+              multi\_class='ovr', penalty='l2', random\_state=None, tol=0.0001,
+              verbose=0)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}140}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{montage\PYZus{}images}\PY{p}{(}\PY{n}{train\PYZus{}subset}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{28}\PY{p}{,}\PY{l+m+mi}{28}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{l+m+mi}{50}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}140}]:} <matplotlib.image.AxesImage at 0x7f78e1b702d0>
+\end{Verbatim}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_14_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}183}]:} \PY{k}{def} \PY{n+nf}{check\PYZus{}classifier}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{:}
+              \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{verify\PYZus{}train\PYZus{}subset}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{28}\PY{p}{,}\PY{l+m+mi}{28}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+              \PY{k}{print} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{verify\PYZus{}train\PYZus{}subset}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}167}]:} \PY{k}{def} \PY{n+nf}{check\PYZus{}classifier}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{:}
+              \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{train\PYZus{}img}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+              \PY{k}{print} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{train\PYZus{}img}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{784}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}168}]:} \PY{n}{check\PYZus{}classifier}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+          \PY{n}{check\PYZus{}classifier}\PY{p}{(}\PY{l+m+mi}{30000}\PY{p}{)}
+          \PY{n}{check\PYZus{}classifier}\PY{p}{(}\PY{l+m+mi}{35000}\PY{p}{)}
+          \PY{n}{check\PYZus{}classifier}\PY{p}{(}\PY{l+m+mi}{38720}\PY{p}{)}
+          \PY{n}{check\PYZus{}classifier}\PY{p}{(}\PY{l+m+mi}{41000}\PY{p}{)}
+          \PY{n}{check\PYZus{}classifier}\PY{p}{(}\PY{l+m+mi}{51000}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0]
+[4]
+[4]
+[6]
+[6]
+[5]
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_17_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_17_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_17_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_17_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_17_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_17_6.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}187}]:} \PY{n}{result} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{verify\PYZus{}train\PYZus{}subset}\PY{p}{)}
+          \PY{k}{print} \PY{n}{shape}\PY{p}{(}\PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{p}{)}
+          \PY{k}{print} \PY{n}{shape}\PY{p}{(}\PY{n}{result}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(10000,)
+(10000,)
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}188}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{true}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{result}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{x}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{red}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{result}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}188}]:} (0, 100)
+\end{Verbatim}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_19_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c}{\PYZsh{} Code written by Kunal Marwaha on Piazza}
+        \PY{k+kn}{import} \PY{n+nn}{math}
+        \PY{c}{\PYZsh{}benchmark.m, converted}
+        \PY{k}{def} \PY{n+nf}{benchmark}\PY{p}{(}\PY{n}{pred\PYZus{}labels}\PY{p}{,} \PY{n}{true\PYZus{}labels}\PY{p}{)}\PY{p}{:}
+            \PY{n}{errors} \PY{o}{=} \PY{n}{pred\PYZus{}labels} \PY{o}{!=} \PY{n}{true\PYZus{}labels}
+            \PY{n}{err\PYZus{}rate} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{errors}\PY{p}{)} \PY{o}{/} \PY{n+nb}{float}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{true\PYZus{}labels}\PY{p}{)}\PY{p}{)}
+            \PY{n}{indices} \PY{o}{=} \PY{n}{errors}\PY{o}{.}\PY{n}{nonzero}\PY{p}{(}\PY{p}{)}
+            \PY{k}{return} \PY{n}{err\PYZus{}rate}\PY{p}{,} \PY{n}{indices}
+        \PY{c}{\PYZsh{}montage\PYZus{}images.m, converted}
+        \PY{k}{def} \PY{n+nf}{montage\PYZus{}images}\PY{p}{(}\PY{n}{images}\PY{p}{)}\PY{p}{:}
+            \PY{n}{num\PYZus{}images}\PY{o}{=}\PY{n+nb}{min}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{n}{images}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+            \PY{n}{numrows}\PY{o}{=}\PY{n}{math}\PY{o}{.}\PY{n}{floor}\PY{p}{(}\PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{num\PYZus{}images}\PY{p}{)}\PY{p}{)}
+            \PY{n}{numcols}\PY{o}{=}\PY{n}{math}\PY{o}{.}\PY{n}{ceil}\PY{p}{(}\PY{n}{num\PYZus{}images}\PY{o}{/}\PY{n}{numrows}\PY{p}{)}
+            \PY{n}{img}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{numrows}\PY{o}{*}\PY{l+m+mi}{28}\PY{p}{,}\PY{n}{numcols}\PY{o}{*}\PY{l+m+mi}{28}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{num\PYZus{}images}\PY{p}{)}\PY{p}{:}
+                \PY{n}{r} \PY{o}{=} \PY{n}{k} \PY{o}{\PYZpc{}} \PY{n}{numrows}
+                \PY{n}{c} \PY{o}{=} \PY{n}{k} \PY{o}{/}\PY{o}{/} \PY{n}{numrows}
+                \PY{n}{img}\PY{p}{[}\PY{n}{r}\PY{o}{*}\PY{l+m+mi}{28}\PY{p}{:}\PY{p}{(}\PY{n}{r}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{28}\PY{p}{,}\PY{n}{c}\PY{o}{*}\PY{l+m+mi}{28}\PY{p}{:}\PY{p}{(}\PY{n}{c}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{28}\PY{p}{]}\PY{o}{=}\PY{n}{images}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{k}\PY{p}{]}\PY{p}{;}
+            \PY{k}{return} \PY{n}{img}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{digit\PYZus{}data\PYZus{}test} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{io}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{data/digit\PYZhy{}dataset/test.mat}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{digit\PYZus{}data\PYZus{}train} \PY{o}{=} \PY{n}{scipy}\PY{o}{.}\PY{n}{io}\PY{o}{.}\PY{n}{loadmat}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{data/digit\PYZhy{}dataset/train.mat}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{n}{test\PYZus{}img}\PY{o}{=} \PY{n}{digit\PYZus{}data\PYZus{}test}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{test\PYZus{}images}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{train\PYZus{}img}\PY{o}{=} \PY{n}{digit\PYZus{}data\PYZus{}train}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{train\PYZus{}images}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{train\PYZus{}label}\PY{o}{=} \PY{n}{digit\PYZus{}data\PYZus{}train}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{train\PYZus{}labels}\PY{l+s}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{def} \PY{n+nf}{q1}\PY{p}{(}\PY{n}{N}\PY{p}{,}\PY{n}{DEBUG}\PY{o}{=}\PY{n+nb+bp}{False}\PY{p}{)}\PY{p}{:}
+             \PY{c}{\PYZsh{}Flatten the 28x28 images into 784 pixel long vectors }
+             \PY{n}{train\PYZus{}img\PYZus{}flat}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{shape}\PY{p}{(}\PY{n}{train\PYZus{}img}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{train\PYZus{}img\PYZus{}flat}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}img}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+             \PY{n}{train\PYZus{}img\PYZus{}flat}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}img\PYZus{}flat}\PY{p}{)}
+             \PY{c}{\PYZsh{}get a list of 10100 unique random numbers for indexing }
+         \PY{c}{\PYZsh{}     N=1000}
+             \PY{n}{num\PYZus{}verification} \PY{o}{=} \PY{l+m+mi}{10000}
+             \PY{n}{s} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+             \PY{k}{while} \PY{n+nb}{len}\PY{p}{(}\PY{n}{s}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{N}\PY{o}{+}\PY{n}{num\PYZus{}verification}\PY{p}{:}
+                 \PY{n}{s}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{60000}\PY{p}{)}\PY{p}{)}
+             \PY{n}{rand\PYZus{}idx}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n}{s}\PY{p}{)}\PY{p}{)}
+             \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{shuffle}\PY{p}{(}\PY{n}{rand\PYZus{}idx}\PY{p}{)}
+             \PY{k}{if} \PY{p}{(}\PY{n}{DEBUG}\PY{p}{)}\PY{p}{:}\PY{k}{print} \PY{n+nb}{len}\PY{p}{(}\PY{n}{rand\PYZus{}idx}\PY{p}{)} 
+             \PY{c}{\PYZsh{}Creating N number of Training set/Labels }
+             \PY{n}{train\PYZus{}subset} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{labels\PYZus{}subset} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{rand\PYZus{}idx}\PY{p}{[}\PY{p}{:}\PY{n}{N}\PY{p}{]}\PY{p}{:}
+                 \PY{n}{train\PYZus{}subset}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}img\PYZus{}flat}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{labels\PYZus{}subset}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}label}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+             \PY{n}{train\PYZus{}subset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{train\PYZus{}subset}\PY{p}{)}
+             \PY{n}{labels\PYZus{}subset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{labels\PYZus{}subset}\PY{p}{)}
+             \PY{k}{if} \PY{p}{(}\PY{n}{DEBUG}\PY{p}{)} \PY{p}{:} \PY{k}{print} \PY{n}{shape}\PY{p}{(}\PY{n}{train\PYZus{}subset}\PY{p}{)}
+             \PY{k}{if} \PY{p}{(}\PY{n}{DEBUG}\PY{p}{)} \PY{p}{:}\PY{k}{print} \PY{n}{shape}\PY{p}{(}\PY{n}{labels\PYZus{}subset}\PY{p}{)}
+             \PY{c}{\PYZsh{}Creating 10000 verification subset }
+             \PY{n}{verify\PYZus{}train\PYZus{}subset} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{verify\PYZus{}labels\PYZus{}subset} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{rand\PYZus{}idx}\PY{p}{[}\PY{n}{N}\PY{p}{:}\PY{n}{num\PYZus{}verification}\PY{o}{+}\PY{n}{N}\PY{p}{]}\PY{p}{:}
+                 \PY{n}{verify\PYZus{}train\PYZus{}subset}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}img\PYZus{}flat}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{train\PYZus{}label}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+             \PY{n}{verify\PYZus{}train\PYZus{}subset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{verify\PYZus{}train\PYZus{}subset}\PY{p}{)}
+             \PY{n}{verify\PYZus{}labels\PYZus{}subset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{p}{)}
+             \PY{k}{if} \PY{p}{(}\PY{n}{DEBUG}\PY{p}{)} \PY{p}{:} \PY{k}{print} \PY{n}{shape}\PY{p}{(}\PY{n}{verify\PYZus{}train\PYZus{}subset}\PY{p}{)}
+             \PY{k}{if} \PY{p}{(}\PY{n}{DEBUG}\PY{p}{)} \PY{p}{:}\PY{k}{print} \PY{n}{shape}\PY{p}{(}\PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{p}{)}
+             \PY{c}{\PYZsh{}Training SVM classifier}
+             \PY{n}{clf} \PY{o}{=} \PY{n}{svm}\PY{o}{.}\PY{n}{SVC}\PY{p}{(}\PY{n}{kernel}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{linear}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{clf}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{train\PYZus{}subset}\PY{p}{,}\PY{n}{labels\PYZus{}subset}\PY{p}{)}
+             \PY{n}{result} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{verify\PYZus{}train\PYZus{}subset}\PY{p}{)}
+             \PY{k}{if} \PY{p}{(}\PY{n}{DEBUG}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{true}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{result}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{x}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{red}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{result}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+                 \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}
+             \PY{n}{error\PYZus{}rate} \PY{o}{=} \PY{n}{benchmark}\PY{p}{(}\PY{n}{result}\PY{p}{,}\PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{wrong\PYZus{}labels} \PY{o}{=} \PY{n}{benchmark}\PY{p}{(}\PY{n}{result}\PY{p}{,}\PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{k}{print} \PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{N=\PYZob{}\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{N}\PY{p}{)}\PY{p}{)}
+             \PY{n}{conf\PYZus{}mat} \PY{o}{=} \PY{n}{metrics}\PY{o}{.}\PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{verify\PYZus{}labels\PYZus{}subset}\PY{p}{,}\PY{n}{result}\PY{p}{)}
+             \PY{k}{print}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Confusion matrix:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+si}{\PYZpc{}s}\PY{l+s}{\PYZdq{}} \PY{o}{\PYZpc{}} \PY{n}{conf\PYZus{}mat}\PY{p}{)}
+             \PY{n}{plot\PYZus{}confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{conf\PYZus{}mat}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Confusion Matrix N=\PYZob{}\PYZcb{}}\PY{l+s}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{N}\PY{p}{)}\PY{p}{)}
+             \PY{k}{return} \PY{n}{error\PYZus{}rate}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{err\PYZus{}lst} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{trainset\PYZus{}size} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{100}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mi}{5000}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{trainset\PYZus{}size}\PY{p}{:}
+             \PY{n}{err\PYZus{}lst}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{q1}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+N=100
+Confusion matrix:
+[[ 909    0    3    5    2   30   11   10    4   10]
+ [   0 1007    3   21    0    0   73   28    4    0]
+ [  52   86  424   41   47   28  109   18   93   55]
+ [  34   38    7  766    3   14   24   24   97   26]
+ [   0   26    1    5  622    2   12   38    9  268]
+ [ 106   17    1  194   19  366   60   20   85   51]
+ [  28   13   12    2   64    6  843    6   12    6]
+ [   2   69    4   10   16    1    2  803    7  139]
+ [  21   70   20   99    3   36   38   21  598   67]
+ [   8   32    1   50   41    4    1   62   16  759]]
+N=200
+Confusion matrix:
+[[ 941    3   24   10    8   12   20   10    6    2]
+ [   0 1041    7   17    1    1    1    1    4    1]
+ [  55   52  687   31   44    9   31   20    9    6]
+ [  13   43   61  854    4    7    7   17   37   23]
+ [   0   37   10   17  767    3   31   15    7   97]
+ [  44  100   23  200   18  383   38   12   55   33]
+ [  12   45   30   12   39   35  818    5    5    0]
+ [   6   79   29   40   20    1    0  813    0   36]
+ [  16  119   76  108   10   21   23   26  511   57]
+ [   7   35   17   44  159    1    4  110    2  619]]
+N=500
+Confusion matrix:
+[[ 885    2   24    6    4   16    6    9    8    3]
+ [   0 1059    9    4    0    1    2    2   16    1]
+ [  42   32  777   25   33    5   26   42   38   13]
+ [  10   21   72  808    0   28    6   15   41    5]
+ [   8   14    2    0  870    1    9    6    2   84]
+ [  22   71   13  126   25  584   14    4   30    6]
+ [  29   41   26    4   33   36  828    4   30    0]
+ [  14   22   21    4   28    6    0  837    9   61]
+ [  13   70   18   37   15   39    5   13  772   17]
+ [  17    8   16   33  104   14    3   49   13  724]]
+N=1000
+Confusion matrix:
+[[ 905    0   16   15    1   20   15    4   12    5]
+ [   0 1106    9    9    2   15    1    0    8    4]
+ [  31   12  816   19   27   12   28   32   24    5]
+ [  13   16   19  809    1   61    3   27   42   20]
+ [  21    7    4    1  829   11   10   13    2   50]
+ [  33   16   19  128   12  582   10    5   51   22]
+ [  20    3   16    0   12   44  889    0    8    0]
+ [  13   18   13    7   15    0    4  901    1   48]
+ [  12   43   14   63    3   73   11   11  694   32]
+ [  19   13    5   13   82   14    1  108   14  773]]
+N=2000
+Confusion matrix:
+[[ 917    1   10    6    4   28   10    0   10    1]
+ [   1 1029    8   11    5    3    1    5    5    6]
+ [   9   19  852   16   21   10   23   18   15    4]
+ [   6   17   43  837   10   57    4   19   41   25]
+ [   2    5    7    2  872    4    7    5    2   53]
+ [  16   12   19  108   16  669    8    3   48    7]
+ [  17   12   25    1   41   27  845    0   12    0]
+ [   4   19   36   10   26    2    0  872    4   37]
+ [  12   45   18   62   11   73   10    6  729   12]
+ [  10   10   19   13   76    9    1   35    4  883]]
+N=5000
+Confusion matrix:
+[[ 954    2    6    3    2    5    5    0    5    3]
+ [   0 1092    4    2    1    1    2    3   11    5]
+ [  12   32  872   16   19    9   13   12   20    4]
+ [   7   23   33  898    3   53    3   14   33    7]
+ [   8    6   11    1  899    4   12   10    1   33]
+ [  14   14   15   59   13  721   19    1   20    7]
+ [   8   10   18    2   20   22  832    0    4    0]
+ [   7    9   19    6   20    3    1  910    1   50]
+ [   9   37   35   55    4   44    4    6  815   19]
+ [   7   12    6   16   73    3    0   50    5  801]]
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_22_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_22_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_22_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_22_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_22_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_22_6.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{trainset\PYZus{}size}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{err\PYZus{}lst}\PY{p}{)}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{o}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{trainset\PYZus{}size}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{err\PYZus{}lst}\PY{p}{)}\PY{p}{,}\PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Train set size}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{14}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Error rate}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{14}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Q \PYZsh{}1 Error dependence on train set size}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} <matplotlib.text.Text at 0x7f35c5e53cd0>
+\end{Verbatim}
+        
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW1Digits_files/HW1Digits_23_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \section{\textbf{Problem 2.}}\label{problem-2.}
+
+    \subparagraph{Create confusion matrices2 for each experiment in Problem
+1. Color code and report your results. You may use built-in
+implementations to generate confusion matrices. What insights can you
+get about the performance of your algorithm from looking at the
+confusion
+matrix?}\label{create-confusion-matrices2-for-each-experiment-in-problem-1.-color-code-and-report-your-results.-you-may-use-built-in-implementations-to-generate-confusion-matrices.-what-insights-can-you-get-about-the-performance-of-your-algorithm-from-looking-at-the-confusion-matrix}
+
+    The confusion matrix is a 10x10 matrix since we have 10 features
+(numbers 0\textasciitilde{}9). We see very strong central diagonals
+because those indicate the number of datapoints that have their
+predicted classiciation the same as the same as the actual label from
+the verification dataset, this indicates that are classifier is doing a
+good job. As the sample size increases, we see that the non-diagonal
+elements have a lower and lower value (more yellower in my colormap),
+this is because the non-diagonal elements indicate that the labels and
+predicted labels don't correspond. We find that there are less
+misclassifications as the training set increases. Confusion Matrix for
+each training test size is plotted above.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k+kn}{import} \PY{n}{metrics}
+         \PY{k}{def} \PY{n+nf}{plot\PYZus{}confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{conf\PYZus{}mat}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{Confusion matrix}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{conf\PYZus{}mat}\PY{p}{,} \PY{n}{interpolation}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{nearest}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{cmap}\PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{cm}\PY{o}{.}\PY{n}{YlOrRd}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{title}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}
+             \PY{n}{tick\PYZus{}marks} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{tick\PYZus{}marks}\PY{p}{,} \PY{n}{tick\PYZus{}marks}\PY{p}{,} \PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{45}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n}{tick\PYZus{}marks}\PY{p}{,} \PY{n}{tick\PYZus{}marks}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{True label}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Predicted label}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
